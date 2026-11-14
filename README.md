@@ -18,6 +18,8 @@
 
 This container is built to run on an [Unraid](https://unraid.net) server, outside of that your mileage will vary.
 
+Unraid users: a ready-made template is available in the Apps tab (Community Applications) once published, or manually from https://github.com/PaddyGameTV/unraid-templates (templates/allthemods11.xml).
+
 
 The docker on the first run will download the same version as tagged `All the Mods 11-0.14.0-beta` and install it.  This can take a while as the Forge installer can take a bit to complete.  You can watch the logs and it will eventually finish.
 
@@ -30,6 +32,7 @@ Note: There are no modded Minecraft files shipped in the container, they are all
 * /data mounted to a persistent disk
 * Port 25565/tcp mapped
 * environment variable EULA set to "true"
+* environment variable CURSEFORGE_API_KEY set to your own (free) CurseForge API key, created at https://console.curseforge.com - CurseForge only allows server pack downloads with a key
 
 As the end user, you are responsible for accepting the EULA from Mojang to run their server, by default in the container it is set to false.
 
