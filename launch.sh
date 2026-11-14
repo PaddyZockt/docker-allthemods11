@@ -67,16 +67,25 @@ if [[ "$CURRENT_INSTALLED" != "$SERVER_VERSION" ]] || ! [[ -f run.sh ]]; then
     rm -fr "$DIR_TEST"
   fi
 
-  # Versuch, die NeoForge-Version automatisch aus run.sh zu lesen
-  if [[ -f run.sh ]]; then
-    DETECTED=$(grep -oE 'neoforge/[0-9]+(\.[0-9]+)*' run.sh | head -n1 | cut -d'/' -f2)
-    [[ -n "$DETECTED" ]] && NEOFORGE_VERSION="$DETECTED"
+  # NeoForge-Version automatisch erkennen: startserver.sh (ATM11), sonst run.sh, sonst Name des mitgelieferten Installers
+  DETECTED=""
+  if [[ -f startserver.sh ]]; then
+    DETECTED=$(grep -oE '^NEOFORGE_VERSION=[0-9][0-9A-Za-z.+-]*' startserver.sh | head -n1 | cut -d'=' -f2)
   fi
+  if [[ -z "$DETECTED" && -f run.sh ]]; then
+    DETECTED=$(grep -oE 'neoforge/[0-9]+(\.[0-9]+)*' run.sh | head -n1 | cut -d'/' -f2)
+  fi
+  if [[ -z "$DETECTED" ]]; then
+    DETECTED=$(ls neoforge-*-installer.jar 2>/dev/null | head -n1 | sed -E 's/^neoforge-(.*)-installer\.jar$/\1/')
+  fi
+  [[ -n "$DETECTED" ]] && NEOFORGE_VERSION="$DETECTED"
 
   [[ -z "$NEOFORGE_VERSION" ]] && { echo "FEHLER: NeoForge-Version nicht erkannt (NEOFORGE_VERSION setzen)"; exit 8; }
   echo "Installiere NeoForge $NEOFORGE_VERSION ..."
-  curl -Lo "neoforge-${NEOFORGE_VERSION}-installer.jar" \
-    "https://maven.neoforged.net/releases/net/neoforged/neoforge/${NEOFORGE_VERSION}/neoforge-${NEOFORGE_VERSION}-installer.jar"
+  if [[ ! -f "neoforge-${NEOFORGE_VERSION}-installer.jar" ]]; then
+    curl -fLo "neoforge-${NEOFORGE_VERSION}-installer.jar" \
+      "https://maven.neoforged.net/releases/net/neoforged/neoforge/${NEOFORGE_VERSION}/neoforge-${NEOFORGE_VERSION}-installer.jar" || { echo "FEHLER: NeoForge-Installer konnte nicht geladen werden"; exit 7; }
+  fi
   java -jar "neoforge-${NEOFORGE_VERSION}-installer.jar" --installServer
 
   echo "$SERVER_VERSION" > "$INSTALLED_VERSION_FILE"
