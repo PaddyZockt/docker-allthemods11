@@ -2,7 +2,7 @@
 
 FROM eclipse-temurin:25-jdk
 
-LABEL version="0.0.0"
+LABEL version="0.14.0-beta"
 
 
 RUN apt-get update && apt-get install -y curl unzip jq && \
