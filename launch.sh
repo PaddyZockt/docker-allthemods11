@@ -99,6 +99,11 @@ if [[ -n "$JVM_OPTS" ]]; then
   for j in ${JVM_OPTS}; do sed -i '$a\'$j'' user_jvm_args.txt; done
 fi
 
+# Das ATM11-Serverpaket enthaelt keine server.properties: beim ersten Start mit Grundwerten anlegen,
+# damit die folgenden Anpassungen greifen. Minecraft ergaenzt den Rest beim Start.
+if [[ ! -f /data/server.properties ]]; then
+  printf 'motd=A Minecraft Server\nwhite-list=false\nallow-flight=true\nmax-players=5\nonline-mode=true\nserver-port=25565\n' > /data/server.properties
+fi
 [[ -n "$MOTD" ]] && sed -i "s/^motd=.*/motd=$MOTD/" /data/server.properties
 [[ -n "$ENABLE_WHITELIST" ]] && sed -i "s/white-list=.*/white-list=$ENABLE_WHITELIST/" /data/server.properties
 [[ -n "$ALLOW_FLIGHT" ]] && sed -i "s/allow-flight=.*/allow-flight=$ALLOW_FLIGHT/" /data/server.properties
