@@ -10,7 +10,7 @@
   * [Accept the EULA](#accept-the-eula)
   * [Permissions of Files](#permissions-of-files)
   * [Resetting](#resetting)
-- [Source](#source-original-atm9-repo)
+- [Credits and origin](#credits-and-origin)
 
 <!-- tocstop -->
 
@@ -60,12 +60,9 @@ This container is designed for [Unraid](https://unraid.net) so the user in the c
 ### Resetting
 If the installation is incomplete for some reason.  Deleting the downloaded server file in /data will restart the install/upgrade process.
 
-## Source (Original ATM9 repo)
-Github: https://github.com/Goobaroo/docker-allthemods9
+## Credits and origin
+This project started from the All the Mods 10 container ([PaddyZockt/docker-allthemods10](https://github.com/PaddyZockt/docker-allthemods10)) and was adapted for All the Mods 11: new Java 25 base image, NeoForge detection from the server pack, automatic server.properties creation and a daily auto-build on GitHub Actions.
 
-Docker: https://hub.docker.com/repository/docker/goobaroo/allthemods9
-
-## Source (W3LFARe repo, ATM10 base)
-Github: https://github.com/W3LFARe/docker-allthemods10
-
-Docker: https://registry.hub.docker.com/r/w3lfare/allthemods10 
+The ATM10 container in turn builds on earlier community work:
+- [W3LFARe/docker-allthemods10](https://github.com/W3LFARe/docker-allthemods10) (ATM10 base)
+- [Goobaroo/docker-allthemods9](https://github.com/Goobaroo/docker-allthemods9) (original ATM9 container)
