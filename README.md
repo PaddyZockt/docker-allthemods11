@@ -2,6 +2,8 @@
 
 A Docker image that runs an **All the Mods 11** Minecraft server. At start-up it asks CurseForge for the newest server pack, installs it together with the NeoForge version the pack needs, and starts the server. When a new pack version appears, the image is rebuilt automatically, and a restarted container updates itself.
 
+Looking for All the Mods 10? See [PaddyZockt/docker-allthemods10](https://github.com/PaddyZockt/docker-allthemods10).
+
 Unraid users: install it from the Apps tab (Community Applications) once it is listed there, or use the template at https://github.com/PaddyZockt/unraid-templates (`templates/allthemods11.xml`).
 
 This repository is not affiliated with the All the Mods team or CurseForge. No mod files are inside the image; the pack is downloaded when the container starts.
