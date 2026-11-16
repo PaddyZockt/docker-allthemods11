@@ -1,4 +1,4 @@
-# [All the Mods 11-0.14.0-beta](https://www.curseforge.com/minecraft/modpacks/all-the-mods-11) server for Docker and Unraid
+# [All the Mods 11-0.15.0-beta](https://www.curseforge.com/minecraft/modpacks/all-the-mods-11) server for Docker and Unraid
 
 A Docker image that runs an **All the Mods 11** Minecraft server. At start-up it asks CurseForge for the newest server pack, installs it together with the NeoForge version the pack needs, and starts the server. When a new pack version appears, the image is rebuilt automatically, and a restarted container updates itself.
 

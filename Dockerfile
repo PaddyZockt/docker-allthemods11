@@ -2,7 +2,7 @@
 
 FROM eclipse-temurin:25-jdk
 
-LABEL version="0.14.0-beta"
+LABEL version="0.15.0-beta"
 LABEL org.opencontainers.image.source="https://github.com/PaddyZockt/docker-allthemods11"
 LABEL org.opencontainers.image.description="All the Mods 11 Minecraft server that installs the newest server pack from CurseForge at start-up"
 
