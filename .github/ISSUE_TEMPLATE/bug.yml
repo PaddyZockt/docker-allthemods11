@@ -1,0 +1,36 @@
+name: "Bug report / Fehler melden"
+description: "Something does not work as expected / Etwas funktioniert nicht wie erwartet"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Please do not post passwords, tokens or API keys. Issues are public.**
+        **Bitte keine Passwörter, Tokens oder API-Schlüssel posten. Issues sind öffentlich.**
+  - type: input
+    id: tag
+    attributes:
+      label: "Image tag / Image-Tag"
+      description: "e.g. latest or the version number / z. B. latest oder die Versionsnummer"
+    validations:
+      required: true
+  - type: input
+    id: host
+    attributes:
+      label: "Where do you run it? / Wo läuft der Container?"
+      placeholder: "Unraid 7.x, Docker on Debian, ..."
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: "What happened? / Was ist passiert?"
+      description: "What did you expect, what happened instead? / Was hast du erwartet, was ist stattdessen passiert?"
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: "Container log / Container-Log"
+      description: "The last lines of the log, e.g. `docker logs <container>`. Remove secrets first. / Die letzten Zeilen des Logs. Vorher Geheimnisse entfernen."
+      render: text
